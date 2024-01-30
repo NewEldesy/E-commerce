@@ -23,7 +23,7 @@ function register() {
         $data = $_POST;
         $data['admin'] = 0;
         set_user($data);
-        header('Location: /Ecommerce/index.php');
+        header('Location: /E-commerce/index.php');
         exit();
     } else {
         require_once 'front/register.php';
@@ -61,7 +61,7 @@ function admin_users() {
 function admin_product_add() {
     if (!empty($_POST)) {
         set_product($_POST, $_FILES);
-        header('Location: /Ecommerce/index.php/admin/products');
+        header('Location: /E-commerce/index.php/admin/products');
         exit();
     } else {
         $categories = get_categories();
@@ -72,7 +72,7 @@ function admin_product_add() {
 function admin_category_add() {
     if (!empty($_POST)) {
         set_category($_POST);
-        header('Location: /Ecommerce/index.php/admin/categories');
+        header('Location: /E-commerce/index.php/admin/categories');
         exit();
     } else {
         require_once 'admin/category_add.php';
@@ -81,26 +81,26 @@ function admin_category_add() {
 
 function admin_category_del($id) {
     remove_category($id);
-    header('Location: /Ecommerce/index.php/admin/categories');
+    header('Location: /E-commerce/index.php/admin/categories');
     exit();
 }
 
 function admin_remove_product($id) {
     remove_product($id);
-    header('Location: /Ecommerce/index.php/admin/products');      
+    header('Location: /E-commerce/index.php/admin/products');      
     exit();
 }
 
 function admin_remove_user($id) {    
     remove_user($id);
-    header('Location: /Ecommerce/index.php/admin/users');      
+    header('Location: /E-commerce/index.php/admin/users');      
     exit();
 }
 
 function admin_user_add() {
     if (!empty($_POST)) {
         set_user($_POST);
-        header('Location: /Ecommerce/index.php/admin/index');
+        header('Location: /E-commerce/index.php/admin/index');
         exit();
     } else {
         require_once 'admin/user_add.php';
@@ -114,9 +114,9 @@ function try_login() {
         $_SESSION["id"] = $user['id'];
         $_SESSION["email"] = $user['email'];
         if ($user['admin'] == 1) {
-            header('Location: /Ecommerce/index.php/admin/index');   
+            header('Location: /E-commerce/index.php/admin/index');   
         } else {
-            header('Location: /Ecommerce/index.php');
+            header('Location: /E-commerce/index.php');
         }
         exit();
     } else {
@@ -135,7 +135,7 @@ function admin_categories_import() {
             }
             $i++;
         }
-        header('Location: /Ecommerce/index.php/admin/categories');
+        header('Location: /E-commerce/index.php/admin/categories');
         exit();
     }
     require_once 'admin/import.php';
@@ -156,7 +156,7 @@ function admin_user_import() {
             }
             $i++;
         }
-        header('Location: /Ecommerce/index.php/admin/index');
+        header('Location: /E-commerce/index.php/admin/index');
         exit();
     }
     require_once 'admin/import.php';
@@ -178,7 +178,7 @@ function add_panier($id) {
             }
         }
     }
-    header('Location: /Ecommerce/index.php/panier');
+    header('Location: /E-commerce/index.php/panier');
     exit();
 }
 
@@ -186,16 +186,16 @@ function del_panier($id) {
     if (!empty($_SESSION['cart'][$id])) {
         $_SESSION['cart'][$id]['quantity'] = 0;
     }
-    header('Location: /Ecommerce/index.php/panier');
+    header('Location: /E-commerce/index.php/panier');
     exit();
 }
 
 function pay() {
     if(!empty($_GET['paymentID']) && !empty($_GET['token']) && !empty($_GET['payerID']) && !empty($_GET['pid']) ){
         // sauvegarde des informations et validation du paiement
-        header("Location: /Ecommerce/index.php/thanks");
+        header("Location: /E-commerce/index.php/thanks");
     }else{
-        header("Location: /Ecommerce/index.php");
+        header("Location: /E-commerce/index.php");
     }
 }
 
