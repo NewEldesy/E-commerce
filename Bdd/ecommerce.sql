@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `category` (
   `id` int NOT NULL,
   `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4;
 
 --
 -- Déchargement des données de la table `category`
@@ -51,7 +51,7 @@ CREATE TABLE `order_product` (
   `product` int NOT NULL,
   `quantity` int NOT NULL,
   `user_order` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -66,7 +66,7 @@ CREATE TABLE `product` (
   `price` float NOT NULL,
   `category` int NOT NULL,
   `filename` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4;
 
 --
 -- Déchargement des données de la table `product`
@@ -91,7 +91,7 @@ CREATE TABLE `user` (
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `admin` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4;
 
 --
 -- Déchargement des données de la table `user`
@@ -115,7 +115,7 @@ CREATE TABLE `user_order` (
   `id` int NOT NULL,
   `statut` varchar(255) NOT NULL,
   `user` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4;
 
 --
 -- Index pour les tables déchargées
