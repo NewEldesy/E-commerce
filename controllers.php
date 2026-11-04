@@ -111,8 +111,9 @@ function try_login() {
     $user = find_user_by_email_and_password($_POST);
     if (!empty($user)) {
         $_SESSION["logged"] = true;
-        $_SESSION["id"] = $user['id'];
-        $_SESSION["email"] = $user['email'];
+        $_SESSION["id"]     = $user['id'];
+        $_SESSION["email"]  = $user['email'];
+        $_SESSION["admin"]  = (int) $user['admin'];
         if ($user['admin'] == 1) {
             header('Location: /E-commerce/index.php/admin/index');   
         } else {
@@ -165,21 +166,39 @@ function admin_user_import() {
 function add_panier($id) {
     $product = get_products_by_id($id);
     if (!empty($product)) {
-        if (!isset($_SESSION['cart']) || (empty($_SESSION['cart']))) {
+        if (!isset($_SESSION['cart']) || empty($_SESSION['cart'])) {
             $_SESSION['cart'] = [];
-            $_SESSION['cart'][$id]['quantity'] = 1;
-            $_SESSION['cart'][$id]['name'] = $product['name'];
+            $_SESSION['cart'][$id] = ['quantity' => 1, 'name' => $product['name'], 'price' => (float) $product['price']];
         } else {
             if (isset($_SESSION['cart'][$id])) {
-                $_SESSION['cart'][$id]['quantity'] = $_SESSION['cart'][$id]['quantity']  + 1;
+                $_SESSION['cart'][$id]['quantity']++;
             } else {
-                $_SESSION['cart'][$id]['quantity'] = 1;
-                $_SESSION['cart'][$id]['name'] = $product['name'];
+                $_SESSION['cart'][$id] = ['quantity' => 1, 'name' => $product['name'], 'price' => (float) $product['price']];
             }
         }
     }
     header('Location: /E-commerce/index.php/panier');
     exit();
+}
+
+function checkout() {
+    if (empty($_SESSION['logged'])) {
+        header('Location: /E-commerce/index.php/login');
+        exit();
+    }
+    if (empty($_SESSION['cart'])) {
+        header('Location: /E-commerce/index.php/panier');
+        exit();
+    }
+    $orderId = create_order((int) $_SESSION['id'], $_SESSION['cart']);
+    $_SESSION['cart'] = [];
+    header('Location: /E-commerce/index.php/thanks');
+    exit();
+}
+
+function admin_orders() {
+    $orders = get_all_orders();
+    require_once 'admin/orders.php';
 }
 
 function del_panier($id) {

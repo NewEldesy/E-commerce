@@ -1,0 +1,36 @@
+# Base de données
+Bdd/
+
+# Credentials & config sensible
+.env
+*.pem
+*.key
+*.p12
+*.pfx
+id_rsa
+id_ed25519
+*.secret
+
+# Uploads utilisateur
+uploads/*
+!uploads/.gitkeep
+
+# Fichiers Claude Code
+MEMORY.md
+memory/
+.claude/
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs
+*.log
+php_errors.log
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
