@@ -1,4 +1,4 @@
-# TWO TREES — Application E-commerce PHP
+# TWO TREES, Application E-commerce PHP
 
 Application e-commerce en PHP vanilla (sans framework) avec MySQL et Bootstrap 5.
 
